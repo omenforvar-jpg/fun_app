@@ -10,17 +10,19 @@
   position: relative;
   width: 100%;
   max-width: 430px;
-  min-height: 100dvh;
+  height: 100dvh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
-  /* Use the new background — green top ~55%, dark bottom ~45% */
+  overflow-y: auto;
+  /* Background image is the full page — green top + dark bottom + banner */
   background-image: url('/successpage_background.jpeg');
-  background-size: 100% 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
+  background-attachment: local;
 }
 
 /* ══ TOP GREEN SECTION ══ */
@@ -28,8 +30,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Sit comfortably in the green zone of the background */
-  padding: 56px 24px 32px;
+  /* Compact padding so content fits in the green zone */
+  padding: 44px 24px 20px;
+  flex-shrink: 0;
 }
 
 /* ── TICK WRAP — positions ripples + circle together ── */
@@ -63,9 +66,9 @@
 }
 
 @keyframes rippleOut {
-  0%   { transform: scale(0.88); opacity: 0.55; }
-  70%  { transform: scale(1.55); opacity: 0.10; }
-  100% { transform: scale(1.65); opacity: 0;    }
+  0%   { transform: scale(0.88); opacity: 0.50; }
+  70%  { transform: scale(1.18); opacity: 0.08; }
+  100% { transform: scale(1.22); opacity: 0;    }
 }
 
 /* White circle container */
@@ -131,10 +134,10 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* sits on the dark part of the background */
   padding: 0 14px 0;
-  /* pull the card up to overlap the green/dark boundary */
-  margin-top: 24px;
+  margin-top: 16px;
+  /* Stop content from overflowing beyond the card area */
+  overflow: hidden;
 }
 
 /* ══ CARD ══ */
