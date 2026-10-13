@@ -17,12 +17,11 @@
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
   overflow-y: auto;
-  /* Background image is the full page — green top + dark bottom + banner */
+  /* Stretch image to fill exactly — shows all zones: green, card, banner */
   background-image: url('/successpage_background.jpeg');
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: top center;
-  background-attachment: local;
 }
 
 /* ══ TOP GREEN SECTION ══ */
@@ -30,8 +29,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Compact padding so content fits in the green zone */
-  padding: 44px 24px 20px;
+  /* Pulled up — tick sits high in the green zone */
+  padding: 26px 24px 14px;
   flex-shrink: 0;
 }
 
@@ -41,9 +40,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
-  height: 120px;
-  margin-bottom: 22px;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 14px;
 }
 
 /* ── RIPPLE LAYERS ── */
@@ -75,8 +74,8 @@
 .tickCircle {
   position: relative;
   z-index: 1;          /* sits above ripple layers */
-  width: 76px;
-  height: 76px;
+  width: 62px;
+  height: 62px;
   border-radius: 50%;
   background: #ffffff;
   display: flex;
@@ -89,8 +88,8 @@
 
 /* The SVG inside */
 .tickSvg {
-  width: 44px;
-  height: 44px;
+  width: 34px;
+  height: 34px;
   display: block;
   overflow: visible;
   /* Draw the stroke in once on mount */
@@ -110,8 +109,8 @@
 
 /* "Payment Successful" */
 .heading {
-  margin: 0 0 6px;
-  font-size: 22px;
+  margin: 0 0 4px;
+  font-size: 20px;
   font-weight: 800;
   color: #ffffff;
   text-align: center;
@@ -121,9 +120,8 @@
 /* Date line — yellow-lime exactly as in reference */
 .dateTime {
   margin: 0;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
-  /* Reference colour: a warm yellow-green lime */
   color: #cfec35;
   text-align: center;
   letter-spacing: 0.1px;
@@ -135,8 +133,7 @@
   display: flex;
   flex-direction: column;
   padding: 0 14px 0;
-  margin-top: 16px;
-  /* Stop content from overflowing beyond the card area */
+  margin-top: 8px;
   overflow: hidden;
 }
 
@@ -155,7 +152,7 @@
   display: flex;
   align-items: flex-start;
   gap: 14px;
-  padding: 20px 18px 18px;
+  padding: 14px 16px 12px;
 }
 
 /* Cyan rounded-square with initials — exactly like reference */
