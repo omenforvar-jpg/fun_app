@@ -35,13 +35,13 @@ export default function SuccessPage({ data, onPayAgain }) {
 
         {/* Ripple halo stack */}
         <div className={styles.tickWrap}>
-          {/* Outer ripple layer — starts later, slightly bigger */}
-          <span className={styles.ripple} aria-hidden="true" />
-          {/* Inner ripple layer */}
-          <span className={`${styles.ripple} ${styles.ripple2}`} aria-hidden="true" />
 
-          {/* White circle with green SVG checkmark */}
+          {/* Single brighter aura ring */}
+          <span className={styles.ripple} aria-hidden="true" />
+
+          {/* White circle with green SVG checkmark + flowing shine */}
           <div className={styles.tickCircle}>
+            {/* Base tick */}
             <svg
               viewBox="0 0 52 52"
               fill="none"
@@ -52,6 +52,22 @@ export default function SuccessPage({ data, onPayAgain }) {
                 points="11,28 21,38 41,16"
                 stroke="#1e8c3a"
                 strokeWidth="5.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            {/* Flowing white aura sweeping over the tick */}
+            <svg
+              viewBox="0 0 52 52"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className={styles.tickGlow}
+              aria-hidden="true"
+            >
+              <polyline
+                points="11,28 21,38 41,16"
+                stroke="rgba(255,255,255,0.85)"
+                strokeWidth="6"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />

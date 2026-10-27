@@ -45,35 +45,28 @@
   margin-bottom: 14px;
 }
 
-/* ── RIPPLE LAYERS ── */
+/* ── SINGLE BRIGHT AURA RING ── */
 .ripple {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.22);
-  transform: scale(0.88);
+  background: rgba(255, 255, 255, 0.55);
+  transform: scale(0.9);
   opacity: 0;
-  /* Start after initial pop-in (0.45s), then repeat */
-  animation: rippleOut 2s cubic-bezier(0.22, 0.61, 0.36, 1) 0.6s infinite;
+  animation: rippleOut 1.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.5s infinite;
   pointer-events: none;
 }
 
-/* Second layer: staggered start, slightly bigger at peak */
-.ripple2 {
-  background: rgba(255, 255, 255, 0.13);
-  animation-delay: 1.0s;
-}
-
 @keyframes rippleOut {
-  0%   { transform: scale(0.88); opacity: 0.50; }
-  70%  { transform: scale(1.18); opacity: 0.08; }
-  100% { transform: scale(1.22); opacity: 0;    }
+  0%   { transform: scale(0.90); opacity: 0.70; }
+  60%  { transform: scale(1.15); opacity: 0.18; }
+  100% { transform: scale(1.20); opacity: 0;    }
 }
 
 /* White circle container */
 .tickCircle {
   position: relative;
-  z-index: 1;          /* sits above ripple layers */
+  z-index: 1;
   width: 62px;
   height: 62px;
   border-radius: 50%;
@@ -84,18 +77,46 @@
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
   animation: popIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   flex-shrink: 0;
+  overflow: hidden;   /* clip the glow sweep to the circle */
 }
 
-/* The SVG inside */
+/* Base tick SVG */
 .tickSvg {
   width: 34px;
   height: 34px;
   display: block;
-  overflow: visible;
+  position: relative;
+  z-index: 1;
   /* Draw the stroke in once on mount */
   stroke-dasharray: 60;
   stroke-dashoffset: 60;
   animation: drawTick 0.45s ease-out 0.35s forwards;
+}
+
+/* Flowing white shine that sweeps along the tick path, repeating */
+.tickGlow {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  display: block;
+  z-index: 2;
+  /* same path length as the tick */
+  stroke-dasharray: 60;
+  /* start fully hidden (offset = full length) */
+  stroke-dashoffset: 60;
+  /* wait for tick to draw in (0.8s), then sweep forward, pause, repeat */
+  animation: glowSweep 2.4s ease-in-out 1.0s infinite;
+  pointer-events: none;
+}
+
+@keyframes glowSweep {
+  /* 0-30%: sweep the white shine along the path */
+  0%   { stroke-dashoffset: 60;  opacity: 1;   }
+  30%  { stroke-dashoffset: -60; opacity: 0.6; }
+  /* 30-60%: fade out */
+  45%  { stroke-dashoffset: -60; opacity: 0;   }
+  /* 60-100%: stay hidden until next cycle */
+  100% { stroke-dashoffset: -60; opacity: 0;   }
 }
 
 @keyframes drawTick {
