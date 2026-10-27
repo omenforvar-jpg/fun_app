@@ -21,22 +21,11 @@ function getInitials(name) {
   return (words[0][0] + words[words.length - 1][0]).toUpperCase();
 }
 
-function maskUpiId(upiId) {
-  const atIdx = upiId.indexOf("@");
-  if (atIdx === -1) {
-    if (upiId.length <= 5) return upiId;
-    return "••••••" + upiId.slice(-5);
-  }
-  const local = upiId.slice(0, atIdx);
-  const domain = upiId.slice(atIdx);
-  const reveal = local.length > 4 ? local.slice(-4) : local;
-  return "•••••••" + reveal + domain;
-}
 
 export default function SuccessPage({ data, onPayAgain }) {
   const txnDate = formatDateTime(new Date());
   const initials = getInitials(data.name);
-  const maskedUpi = maskUpiId(data.upiId);
+  const fullUpi = data.upiId.toUpperCase();
 
   return (
     <div className={styles.page}>
@@ -87,7 +76,7 @@ export default function SuccessPage({ data, onPayAgain }) {
             </div>
             <div className={styles.cardInfo}>
               <p className={styles.recipientName}>{data.name}</p>
-              <p className={styles.maskedUpi}>{maskedUpi}</p>
+              <p className={styles.maskedUpi}>{fullUpi}</p>
               <div className={styles.amountRow}>
                 <span className={styles.amount}>₹{data.amount}</span>
                 <span className={styles.splitExpense}>Split Expense</span>
