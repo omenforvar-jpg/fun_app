@@ -193,13 +193,15 @@
   word-break: break-word;
 }
 
-/* Masked UPI ID — dots + partial */
+/* UPI ID — full, uppercase, wraps if long */
 .maskedUpi {
   font-size: 14px;
   color: #8e8e93;
   font-weight: 400;
   margin: 0 0 14px;
   letter-spacing: 0.3px;
+  word-break: break-all;
+  overflow-wrap: anywhere;
 }
 
 /* Amount + Split Expense row */
